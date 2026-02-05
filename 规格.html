@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>装修设计效果图 | 移动端</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PingFang+SC:wght@300;400;500;600;700&display=swap">
+    <style>
+        :root {
+            --primary: #3a6ff7;
+            --primary-light: #5a8cff;
+            --primary-dark: #1e4fbf;
+            --secondary: #ff6b6b;
+            --dark: #1a1a1a;
+            --dark-gray: #2d2d2d;
+            --gray: #5a5a5a;
+            --light-gray: #f5f5f7;
+            --white: #ffffff;
+            --border-radius: 16px;
+            --border-radius-sm: 12px;
+            --border-radius-lg: 24px;
+            --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            --box-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --header-height: 70px;
+            --safe-area: env(safe-area-inset-bottom, 0px);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        html, body {
+            font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--light-gray);
+            color: var(--dark);
+            line-height: 1.6;
+            font-size: 16px;
+            overflow-x: hidden;
+            height: 100%;
+            position: relative;
+        }
+        
+        body {
+            padding-bottom: calc(80px + var(--safe-area));
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 100%;
+            padding: 0 20px;
+        }
+        
+        /* 头部区域 */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--white);
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .logo i {
+            color: var(--secondary);
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .header-action-btn {
+            background: none;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        
+        .header-action-btn:hover, .header-action-btn:active {
+            background-color: var(--light-gray);
+            color: var(--primary);
+        }
+        
+        /* 主内容区域 */
+        .main-content {
+            padding: 20px 0 30px;
+        }
+        
+        /* 欢迎卡片 */
+        .welcome-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: var(--border-radius-lg);
+            padding: 30px 25px;
+            color: var(--white);
+            margin-bottom: 25px;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .welcome-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+        }
+        
+        .welcome-card h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+        
+        .welcome-card p {
+            opacity: 0.9;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+        
+        .welcome-badge {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* 卡片设计 */
+        .card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow-hover);
+        }
+        
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+        }
+        
+        .card-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .card-title i {
+            color: var(--primary);
+        }
+        
+        /* 服务列表 */
+        .service-list {
+            list-style: none;
+            margin-bottom: 5px;
+        }
+        
+        .service-list li {
+            padding: 18px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .service-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .service-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            color: var(--white);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .service-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+        
+        .service-content p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+        
+        /* 价格卡片 */
+        .price-card {
+            border-left: 4px solid var(--primary);
+        }
+        
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        
+        .price-table th {
+            background-color: var(--light-gray);
+            color: var(--dark);
+            text-align: left;
+            padding: 15px;
+            font-weight: 600;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .price-table td {
+            padding: 18px 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .price-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .price-tag {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .area-tag {
+            display: inline-block;
+            background-color: rgba(58, 111, 247, 0.1);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        /* 可编辑字段 */
+        .editable-field {
+            background-color: #f8faff;
+            border: 1.5px solid #e8eeff;
+            border-radius: var(--border-radius-sm);
+            padding: 15px;
+            margin: 15px 0;
+            position: relative;
+            transition: var(--transition);
+            min-height: 54px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .editable-field.active {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(58, 111, 247, 0.1);
+            background-color: var(--white);
+        }
+        
+        .edit-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            opacity: 0.6;
+            transition: var(--transition);
+        }
+        
+        .editable-field:hover .edit-icon {
+            opacity: 1;
+        }
+        
+        /* 信息卡片网格 */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .info-item {
+            background-color: var(--white);
+            border-radius: var(--border-radius-sm);
+            padding: 20px;
+            border-left: 4px solid var(--primary-light);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.04);
+        }
+        
+        .info-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .info-item h4 i {
+            color: var(--primary);
+        }
+        
+        /* 功能卡片网格 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .feature-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius-sm);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            border: 1px solid #f0f0f0;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow-hover);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--white);
+        }
+        
+        .feature-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+        
+        .feature-card p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+        
+        /* 按钮设计 */
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 18px 24px;
+            border: none;
+            border-radius: var(--border-radius-sm);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            box-shadow: 0 8px 20px rgba(58, 111, 247, 0.25);
+        }
+        
+        .btn-primary:hover, .btn-primary:active {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(58, 111, 247, 0.35);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--secondary), #ff4757);
+            color: var(--white);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.25);
+        }
+        
+        .btn-secondary:hover, .btn-secondary:active {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(255, 107, 107, 0.35);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-outline:hover, .btn-outline:active {
+            background-color: var(--primary);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+        
+        /* 底部导航栏 */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--white);
+            padding: 15px 20px calc(15px + var(--safe-area));
+            box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.08);
+            display: flex;
+            justify-content: space-between;
+            z-index: 1000;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            flex: 1;
+        }
+        
+        .nav-item.active, .nav-item:hover {
+            color: var(--primary);
+        }
+        
+        .nav-icon {
+            font-size: 1.2rem;
+        }
+        
+        /* 模态框 */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            width: 100%;
+            max-width: 500px;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .modal-header {
+            padding: 25px 25px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            position: relative;
+        }
+        
+        .modal-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f5f5f7;
+            color: var(--gray);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .close-modal:hover {
+            background-color: #eaeaea;
+            color: var(--dark);
+        }
+        
+        .modal-body {
+            padding: 20px 25px;
+            overflow-y: auto;
+            flex: 1;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 1rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 16px 18px;
+            border: 1.5px solid #e8eeff;
+            border-radius: var(--border-radius-sm);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: var(--transition);
+            background-color: #f8faff;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(58, 111, 247, 0.1);
+            background-color: var(--white);
+        }
+        
+        .modal-actions {
+            padding: 20px 25px;
+            border-top: 1px solid #f0f0f0;
+            display: flex;
+            gap: 15px;
+        }
+        
+        .modal-actions .btn {
+            flex: 1;
+        }
+        
+        /* 动画效果 */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .animate-slide-up {
+            animation: slideUp 0.4s ease forwards;
+        }
+        
+        /* 通知 */
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 16px 24px;
+            border-radius: var(--border-radius-sm);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            max-width: 90%;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+        
+        .notification.show {
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        .notification.success {
+            background-color: #00b894;
+        }
+        
+        .notification.info {
+            background-color: var(--primary);
+        }
+        
+        /* 响应式调整 */
+        @media (min-width: 768px) {
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* 滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 3px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <div class="header">
+        <div class="logo">
+            <i class="fas fa-palette"></i>
+            <span>设计家</span>
+        </div>
+        <div class="header-actions">
+            <button class="header-action-btn" id="search-btn">
+                <i class="fas fa-search"></i>
+            </button>
+            <button class="header-action-btn" id="edit-all-btn">
+                <i class="fas fa-edit"></i>
+            </button>
+        </div>
+    </div>
+    
+    <!-- 主内容 -->
+    <div class="container">
+        <div class="main-content">
+            <!-- 欢迎卡片 -->
+            <div class="welcome-card animate-slide-up">
+                <div class="welcome-badge">专业设计服务</div>
+                <h1 id="main-title">装修设计效果图</h1>
+                <p id="main-subtitle">专业设计服务，创造理想空间。提供VR效果图、施工图、一对一全程服务。</p>
+            </div>
+            
+            <!-- 服务范围卡片 -->
+            <div class="card animate-slide-up" style="animation-delay: 0.1s;">
+                <h2 class="card-title"><i class="fas fa-paint-roller"></i> 设计业务范围</h2>
+                <ul class="service-list">
+                    <li>
+                        <div class="service-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="service-content">
+                            <h4>家装效果图、施工图</h4>
+                            <p>住宅公寓、复式楼、大平层等室内设计</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="service-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="service-content">
+                            <h4>工装效果图、施工图</h4>
+                            <p>办公室、店铺、餐厅、酒店等商业空间设计</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="service-icon">
+                            <i class="fas fa-landmark"></i>
+                        </div>
+                        <div class="service-content">
+                            <h4>别墅、自建房</h4>
+                            <p>独栋别墅、联排别墅、农村自建房整体设计</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- 价格卡片 -->
+            <div class="card price-card animate-slide-up" style="animation-delay: 0.2s;">
+                <h2 class="card-title"><i class="fas fa-tags"></i> 收费标准（建筑面积）</h2>
+                <div class="table-container">
+                    <table class="price-table">
+                        <thead>
+                            <tr>
+                                <th>面积范围</th>
+                                <th>价格</th>
+                                <th>包含内容</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="area-tag editable-field" data-id="area1">70m²内</span>
+                                </td>
+                                <td class="price-tag editable-field" data-id="price1">300元/套</td>
+                                <td class="editable-field" data-id="content1">
+                                    包含VR效果图、施工图
+                                    <i class="fas fa-pencil-alt edit-icon"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="area-tag editable-field" data-id="area2">100m²内</span>
+                                </td>
+                                <td class="price-tag editable-field" data-id="price2">400元/套</td>
+                                <td class="editable-field" data-id="content2">
+                                    包含VR效果图、施工图
+                                    <i class="fas fa-pencil-alt edit-icon"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="area-tag editable-field" data-id="area3">130m²内</span>
+                                </td>
+                                <td class="price-tag editable-field" data-id="price3">500元/套</td>
+                                <td class="editable-field" data-id="content3">
+                                    包含VR效果图、施工图
+                                    <i class="fas fa-pencil-alt edit-icon"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="area-tag editable-field" data-id="area4">150m²内</span>
+                                </td>
+                                <td class="price-tag editable-field" data-id="price4">600元/套</td>
+                                <td class="editable-field" data-id="content4">
+                                    包含VR效果图、施工图
+                                    <i class="fas fa-pencil-alt edit-icon"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- 服务详情卡片 -->
+            <div class="card animate-slide-up" style="animation-delay: 0.3s;">
+                <h2 class="card-title"><i class="fas fa-concierge-bell"></i> 服务详情</h2>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <h4><i class="fas fa-user-check"></i> 服务标准</h4>
+                        <div class="editable-field" id="service-standard">
+                            设计师全程一对一服务，免费修改不限次数
+                            <i class="fas fa-pencil-alt edit-icon"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h4><i class="fas fa-tools"></i> 对接材料</h4>
+                        <div class="editable-field" id="material-requirements">
+                            需提供户型平面图或CAD图纸及现场视频
+                            <i class="fas fa-pencil-alt edit-icon"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h4><i class="fas fa-calendar-alt"></i> 交付周期</h4>
+                        <div class="editable-field" id="delivery-time">
+                            正常周期2-3天，加急24小时内
+                            <i class="fas fa-pencil-alt edit-icon"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h4><i class="fas fa-credit-card"></i> 支付方式</h4>
+                        <div class="editable-field" id="payment-method">
+                            作图须支付总价50%定金，尾款出大图前付清
+                            <i class="fas fa-pencil-alt edit-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 功能卡片 -->
+            <div class="card animate-slide-up" style="animation-delay: 0.4s;">
+                <h2 class="card-title"><i class="fas fa-star"></i> 核心功能</h2>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-vr-cardboard"></i>
+                        </div>
+                        <h4>VR效果图</h4>
+                        <p>沉浸式体验装修效果</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-drafting-compass"></i>
+                        </div>
+                        <h4>施工图纸</h4>
+                        <p>详细施工指导图纸</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h4>全程服务</h4>
+                        <p>设计师一对一沟通</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h4>免费修改</h4>
+                        <p>修改次数不限</p>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="contact-btn">
+                        <i class="fas fa-paper-plane"></i> 联系设计师
+                    </button>
+                    <button class="btn btn-outline" id="reset-btn">
+                        <i class="fas fa-undo"></i> 重置为默认
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部导航栏 -->
+    <div class="bottom-nav">
+        <a href="#" class="nav-item active">
+            <i class="fas fa-home nav-icon"></i>
+            <span>首页</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-images nav-icon"></i>
+            <span>案例</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-calendar-alt nav-icon"></i>
+            <span>预约</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-user nav-icon"></i>
+            <span>我的</span>
+        </a>
+    </div>
+    
+    <!-- 批量编辑模态框 -->
+    <div class="modal-overlay" id="edit-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>批量修改参数</h2>
+                <div class="close-modal" id="close-modal">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="edit-title">页面标题</label>
+                    <input type="text" id="edit-title" class="form-control" value="装修设计效果图">
+                </div>
+                <div class="form-group">
+                    <label for="edit-subtitle">页面副标题</label>
+                    <input type="text" id="edit-subtitle" class="form-control" value="专业设计服务，创造理想空间。提供VR效果图、施工图、一对一全程服务。">
+                </div>
+                <div class="form-group">
+                    <label for="edit-service">服务标准</label>
+                    <input type="text" id="edit-service" class="form-control" value="设计师全程一对一服务，免费修改不限次数">
+                </div>
+                <div class="form-group">
+                    <label for="edit-material">对接材料要求</label>
+                    <input type="text" id="edit-material" class="form-control" value="需提供户型平面图或CAD图纸及现场视频">
+                </div>
+                <div class="form-group">
+                    <label for="edit-delivery">交付周期</label>
+                    <input type="text" id="edit-delivery" class="form-control" value="正常周期2-3天，加急24小时内">
+                </div>
+                <div class="form-group">
+                    <label for="edit-payment">支付方式</label>
+                    <input type="text" id="edit-payment" class="form-control" value="作图须支付总价50%定金，尾款出大图前付清">
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-outline" id="cancel-edit">取消</button>
+                <button class="btn btn-primary" id="save-changes">保存修改</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 通知 -->
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notification-text">修改已保存</span>
+    </div>
+    
+    <script>
+        // 默认值存储
+        const defaultValues = {
+            'main-title': '装修设计效果图',
+            'main-subtitle': '专业设计服务，创造理想空间。提供VR效果图、施工图、一对一全程服务。',
+            'service-standard': '设计师全程一对一服务，免费修改不限次数',
+            'material-requirements': '需提供户型平面图或CAD图纸及现场视频',
+            'delivery-time': '正常周期2-3天，加急24小时内',
+            'payment-method': '作图须支付总价50%定金，尾款出大图前付清',
+            'area1': '70m²内',
+            'price1': '300元/套',
+            'content1': '包含VR效果图、施工图',
+            'area2': '100m²内',
+            'price2': '400元/套',
+            'content2': '包含VR效果图、施工图',
+            'area3': '130m²内',
+            'price3': '500元/套',
+            'content3': '包含VR效果图、施工图',
+            'area4': '150m²内',
+            'price4': '600元/套',
+            'content4': '包含VR效果图、施工图'
+        };
+        
+        // DOM元素
+        const editModal = document.getElementById('edit-modal');
+        const closeModal = document.getElementById('close-modal');
+        const cancelEdit = document.getElementById('cancel-edit');
+        const saveChangesBtn = document.getElementById('save-changes');
+        const editAllBtn = document.getElementById('edit-all-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const contactBtn = document.getElementById('contact-btn');
+        const searchBtn = document.getElementById('search-btn');
+        const notification = document.getElementById('notification');
+        const notificationText = document.getElementById('notification-text');
+        
+        // 使所有可编辑字段可点击编辑
+        document.querySelectorAll('.editable-field').forEach(field => {
+            field.addEventListener('click', function(e) {
+                // 如果点击的是编辑图标，不触发编辑
+                if (e.target.classList.contains('edit-icon') || e.target.classList.contains('fa-pencil-alt')) {
+                    return;
+                }
+                
+                const currentText = this.textContent.trim();
+                const dataId = this.getAttribute('data-id');
+                const isPriceTag = this.classList.contains('price-tag');
+                const isAreaTag = this.classList.contains('area-tag');
+                
+                // 创建输入框
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.value = currentText;
+                input.className = 'form-control';
+                input.style.width = '100%';
+                input.style.margin = '0';
+                input.style.border = 'none';
+                input.style.padding = '0';
+                input.style.fontSize = isPriceTag ? '1.1rem' : '1rem';
+                input.style.fontWeight = isPriceTag ? '700' : '400';
+                input.style.background = 'transparent';
+                
+                // 添加激活状态
+                this.classList.add('active');
+                
+                // 替换内容为输入框
+                const originalHTML = this.innerHTML;
+                this.innerHTML = '';
+                this.appendChild(input);
+                input.focus();
+                
+                // 保存更改
+                const saveEdit = () => {
+                    const newText = input.value.trim();
+                    this.classList.remove('active');
+                    
+                    if (newText) {
+                        if (isAreaTag) {
+                            this.innerHTML = `<span class="area-tag">${newText}</span>`;
+                        } else if (isPriceTag) {
+                            this.innerHTML = `<span class="price-tag">${newText}</span>`;
+                        } else {
+                            this.innerHTML = newText + '<i class="fas fa-pencil-alt edit-icon"></i>';
+                        }
+                        
+                        if (dataId) {
+                            defaultValues[dataId] = newText;
+                        }
+                        
+                        // 显示成功通知
+                        showNotification('修改已保存', 'success');
+                    } else {
+                        this.innerHTML = originalHTML;
+                    }
+                };
+                
+                // 按Enter保存
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        saveEdit();
+                    }
+                });
+                
+                // 失去焦点保存
+                input.addEventListener('blur', saveEdit);
+                
+                // 阻止点击事件冒泡
+                input.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            });
+        });
+        
+        // 批量编辑按钮
+        editAllBtn.addEventListener('click', function() {
+            // 填充模态框中的当前值
+            document.getElementById('edit-title').value = document.getElementById('main-title').textContent;
+            document.getElementById('edit-subtitle').value = document.getElementById('main-subtitle').textContent;
+            document.getElementById('edit-service').value = document.getElementById('service-standard').textContent;
+            document.getElementById('edit-material').value = document.getElementById('material-requirements').textContent;
+            document.getElementById('edit-delivery').value = document.getElementById('delivery-time').textContent;
+            document.getElementById('edit-payment').value = document.getElementById('payment-method').textContent;
+            
+            // 显示模态框
+            editModal.classList.add('active');
+        });
+        
+        // 搜索按钮
+        searchBtn.addEventListener('click', function() {
+            showNotification('搜索功能即将上线', 'info');
+        });
+        
+        // 关闭模态框函数
+        function closeModalFunc() {
+            editModal.classList.remove('active');
+        }
+        
+        // 关闭模态框
+        closeModal.addEventListener('click', closeModalFunc);
+        cancelEdit.addEventListener('click', closeModalFunc);
+        
+        // 点击模态框外部关闭
+        editModal.addEventListener('click', function(e) {
+            if (e.target === editModal) {
+                closeModalFunc();
+            }
+        });
+        
+        // 保存批量修改
+        saveChangesBtn.addEventListener('click', function() {
+            // 更新页面内容
+            document.getElementById('main-title').textContent = document.getElementById('edit-title').value;
+            document.getElementById('main-subtitle').textContent = document.getElementById('edit-subtitle').value;
+            document.getElementById('service-standard').innerHTML = document.getElementById('edit-service').value + '<i class="fas fa-pencil-alt edit-icon"></i>';
+            document.getElementById('material-requirements').innerHTML = document.getElementById('edit-material').value + '<i class="fas fa-pencil-alt edit-icon"></i>';
+            document.getElementById('delivery-time').innerHTML = document.getElementById('edit-delivery').value + '<i class="fas fa-pencil-alt edit-icon"></i>';
+            document.getElementById('payment-method').innerHTML = document.getElementById('edit-payment').value + '<i class="fas fa-pencil-alt edit-icon"></i>';
+            
+            // 更新默认值
+            defaultValues['main-title'] = document.getElementById('edit-title').value;
+            defaultValues['main-subtitle'] = document.getElementById('edit-subtitle').value;
+            defaultValues['service-standard'] = document.getElementById('edit-service').value;
+            defaultValues['material-requirements'] = document.getElementById('edit-material').value;
+            defaultValues['delivery-time'] = document.getElementById('edit-delivery').value;
+            defaultValues['payment-method'] = document.getElementById('edit-payment').value;
+            
+            // 关闭模态框
+            closeModalFunc();
+            
+            // 显示成功通知
+            showNotification('所有修改已保存成功！', 'success');
+        });
+        
+        // 重置按钮
+        resetBtn.addEventListener('click', function() {
+            if (confirm('确定要重置所有内容为默认值吗？')) {
+                // 重置页面内容
+                document.getElementById('main-title').textContent = defaultValues['main-title'];
+                document.getElementById('main-subtitle').textContent = defaultValues['main-subtitle'];
+                document.getElementById('service-standard').innerHTML = defaultValues['service-standard'] + '<i class="fas fa-pencil-alt edit-icon"></i>';
+                document.getElementById('material-requirements').innerHTML = defaultValues['material-requirements'] + '<i class="fas fa-pencil-alt edit-icon"></i>';
+                document.getElementById('delivery-time').innerHTML = defaultValues['delivery-time'] + '<i class="fas fa-pencil-alt edit-icon"></i>';
+                document.getElementById('payment-method').innerHTML = defaultValues['payment-method'] + '<i class="fas fa-pencil-alt edit-icon"></i>';
+                
+                // 重置价格表
+                for (let i = 1; i <= 4; i++) {
+                    const areaElement = document.querySelector(`[data-id="area${i}"]`);
+                    const priceElement = document.querySelector(`[data-id="price${i}"]`);
+                    const contentElement = document.querySelector(`[data-id="content${i}"]`);
+                    
+                    if (areaElement) {
+                        areaElement.innerHTML = `<span class="area-tag">${defaultValues[`area${i}`]}</span>`;
+                    }
+                    
+                    if (priceElement) {
+                        priceElement.innerHTML = `<span class="price-tag">${defaultValues[`price${i}`]}</span>`;
+                    }
+                    
+                    if (contentElement) {
+                        contentElement.innerHTML = defaultValues[`content${i}`] + '<i class="fas fa-pencil-alt edit-icon"></i>';
+                    }
+                }
+                
+                // 显示成功通知
+                showNotification('已重置所有内容为默认值！', 'success');
+            }
+        });
+        
+        // 联系按钮
+        contactBtn.addEventListener('click', function() {
+            showNotification('设计师电话：138-XXXX-XXXX，微信：design_pro', 'info');
+        });
+        
+        // 显示通知函数
+        function showNotification(message, type = 'info') {
+            notificationText.textContent = message;
+            notification.className = 'notification ' + type;
+            notification.classList.add('show');
+            
+            // 3秒后自动隐藏
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+        
+        // 页面加载完成后的初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 为所有可编辑字段添加图标
+            document.querySelectorAll('.editable-field:not([data-id])').forEach(field => {
+                if (!field.querySelector('.edit-icon')) {
+                    field.innerHTML += '<i class="fas fa-pencil-alt edit-icon"></i>';
+                }
+            });
+            
+            console.log('移动端装修设计效果图页面已加载完成！');
+        });
+        
+        // 防止滚动穿透
+        document.body.addEventListener('touchmove', function(e) {
+            if (editModal.classList.contains('active')) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+    </script>
+</body>
+</html>
